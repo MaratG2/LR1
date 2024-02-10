@@ -17,6 +17,9 @@ jobs:
 
     - name: cmake
       run: cmake -S ../LR1/ -B ../LR1/build/
+    
+    - name: auto configure
+      run: autoconf configure.ac
 
     - name: configure
       run: ./configure
