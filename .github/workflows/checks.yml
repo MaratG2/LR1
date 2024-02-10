@@ -16,4 +16,4 @@ jobs:
       run: sudo apt install -y libcppunit-dev
 
     - name: make
-      run: cd .. && cmake .. && make
+      run: cd ..\LR1 && cmake .. && make
