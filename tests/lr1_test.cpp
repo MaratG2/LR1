@@ -49,7 +49,7 @@ TEST_F(ProcessTest, CTest2)
 {
 // Вызываем функцию process с тестовыми данными
     std::pair<int, int> test_cs = { 2, 6 };
-    result = process(arr, cs);
+    result = process(arr, test_cs);
 
 // Проверяем ожидаемые результаты
     std::vector<float> expected_result = { 0.428571, 25.103895, 3.000000, 3.000000,
