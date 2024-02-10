@@ -2,7 +2,7 @@
 #include <vector>
 
 #include <lib/lr1.h>
-
+//
 int main() {
     std::vector<int> arr = {10, 14, 15, 20, 21, 25, 30};
     std::pair<int, int> result = countAndSum(arr);
