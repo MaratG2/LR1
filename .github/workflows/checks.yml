@@ -14,10 +14,7 @@ jobs:
     
     - name: install cppunit
       run: sudo apt install -y libcppunit-dev
-      
-    - name: configure
-      run: ./configure
-      
+
     - name: make
       run: make
       
