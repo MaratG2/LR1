@@ -15,5 +15,14 @@ jobs:
     - name: install cppunit
       run: sudo apt install -y libcppunit-dev
 
+    - name: cmake
+      run: cmake -S ../LR1/ -B ../LR1/build/
+     
+    - name: configure
+      run: ./configure
+      
     - name: make
-      run: cmake -S ../LR1/ -B ../LR1/build/ && make
+      run: make
+      
+    - name: make test
+      run: make test
