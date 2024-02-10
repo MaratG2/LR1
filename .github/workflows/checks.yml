@@ -10,19 +10,12 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: install cppunit
-      run: sudo apt install -y libcppunit-dev
+    - name: Checkout
+      uses: actions/checkout@v2
 
-    - name: cmake
-      run: cmake -S ../LR1/ -B ../LR1/build/
-
-    - name: make
-      run: make
-      
-    - name: make test
-      run: make test
-      
-    - name: make install
-      run: make install
+    - name: Build and test project
+      uses: nicledomaS/cmake_build_action@v1.4
+      with:
+        submodule_update: ON
+        run_tests: ON
+        unit_test_build: -Dtest=ON
