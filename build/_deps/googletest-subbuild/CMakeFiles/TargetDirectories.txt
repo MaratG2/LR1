@@ -1,0 +1,3 @@
+C:/Users/god79/source/repos/LR1/build/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
+C:/Users/god79/source/repos/LR1/build/_deps/googletest-subbuild/CMakeFiles/ALL_BUILD.dir
+C:/Users/god79/source/repos/LR1/build/_deps/googletest-subbuild/CMakeFiles/ZERO_CHECK.dir
