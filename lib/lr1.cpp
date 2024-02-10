@@ -1,13 +1,19 @@
 #include "lr1.h"
 
-std::pair<int, int> countAndSum(const std::vector<int>& array) {
-    int count = 0;
-    int total = 0;
-    for (int num : array) {
-        if (num % 5 == 0 && num % 7 != 0) {
-            count++;
-            total += num;
-        }
+std::vector<float> process(const std::vector<float>& arr, const std::pair<int, int>& cs) 
+{
+    float min_element = arr[cs.first];
+    std::vector<float> results = arr;
+    for (int i = cs.first; i <= cs.second; i++)
+    {
+        if (results[i] < min_element)
+            min_element = results[i];
     }
-    return std::make_pair(count, total);
+
+    for (int i = cs.first; i <= cs.second; i++)
+    {
+        results[i] = min_element;
+    }
+
+    return results;
 }

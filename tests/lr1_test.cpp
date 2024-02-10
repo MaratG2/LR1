@@ -6,48 +6,53 @@
 // Подробнее https://google.github.io/googletest/reference/testing.html
 
 // Тестовый класс
-class CountAndSumTest : public ::testing::Test {
+class ProcessTest : public ::testing::Test
+{
 protected:
     // Здесь вы можете добавить дополнительные настройки для тестов
     // в функции SetUp()
-    void SetUp() override {
+    void SetUp() override 
+    {
         // Например, инициализация данных
-        arr = {10, 14, 15, 20, 21, 25, 30};
+        arr = { 3 / 7.0, 1933 / 77.0, 12, 15, 999999, 135 / 17.0 * 31, 3, -91 / 5.0, 1 / 9999999.0, 0, 7 / 9.0, 3.1415, 35 };
+        cs = { 2, 5 };
     }
 
     // Здесь вы можете освободить ресурсы, если это необходимо
     // в функции TearDown()
-    void TearDown() override {
+    void TearDown() override 
+    {
         // Например, очистка данных
         arr.clear();
     }
 
     // Объявляем переменные, которые будут использоваться в тестах
-    std::vector<int> arr;
-    std::pair<int, int> result;
+    std::vector<float> arr;
+    std::pair<int, int> cs;
+    std::vector<float> result;
 };
 
 // Пример теста1
-TEST_F(CountAndSumTest, CTest1) {
-// Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
+TEST_F(ProcessTest, CTest1) 
+{
+// Вызываем функцию process с тестовыми данными
+    result = process(arr, cs);
 
 // Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 5);
-    EXPECT_EQ(result.second, 100);
+    std::vector<float> expected_result = { 0.428571, 25.103895, 12.000000, 12.000000,
+        12.000000, 12.000000, 3.000000, -18.200001, 0.000000, 0.000000, 0.777778, 3.141500, 35.000000 };
+    EXPECT_EQ(result, expected_result);
 }
 
 // Пример теста2
-TEST(CountAndSumTest1, CTest2) {
-    // Объявляем переменные, которые будут использоваться в тесте
-    std::vector<int> arr;
-    std::pair<int, int> result;
-    // Инициализация данных
-    arr = {10, 14, 15, 20, 21, 25, 30, 35, 5};
-// Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
+TEST_F(ProcessTest, CTest2)
+{
+// Вызываем функцию process с тестовыми данными
+    std::pair<int, int> test_cs = { 2, 6 };
+    result = process(arr, cs);
 
 // Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 6);
-    EXPECT_EQ(result.second, 105);
+    std::vector<float> expected_result = { 0.428571, 25.103895, 3.000000, 3.000000,
+        3.000000, 3.000000, 3.000000, -18.200001, 0.000000, 0.000000, 0.777778, 3.141500, 35.000000 };
+    EXPECT_EQ(result, expected_result);
 }
