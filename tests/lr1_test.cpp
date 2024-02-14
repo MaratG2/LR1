@@ -39,8 +39,7 @@ TEST_F(ProcessTest, CTest1)
     result = process(arr, cs);
 
 // Проверяем ожидаемые результаты
-    std::vector<float> expected_result = { 0.428571, 25.103895, 12.000000, 12.000000,
-        12.000000, 12.000000, 3.000000, -18.200001, 1 / 9999999.0, 0.000000, 0.777778, 3.141500, 35.000000 };
+    std::vector<float> expected_result = { 3 / 7.0, 1933 / 77.0, 12, 12, 12, 12, 3, -91 / 5.0, 1 / 9999999.0, 0, 7 / 9.0, 3.1415, 35 };
     EXPECT_EQ(result, expected_result);
 }
 
@@ -52,7 +51,6 @@ TEST_F(ProcessTest, CTest2)
     result = process(arr, test_cs);
 
 // Проверяем ожидаемые результаты
-    std::vector<float> expected_result = { 0.428571, 25.103895, 3.000000, 3.000000,
-        3.000000, 3.000000, 3.000000, -18.200001, 1 / 9999999.0, 0.000000, 0.777778, 3.141500, 35.000000 };
+    std::vector<float> expected_result = { 3 / 7.0, 1933 / 77.0, 3, 3, 3, 3, 3, -91 / 5.0, 1 / 9999999.0, 0, 7 / 9.0, 3.1415, 35 };
     EXPECT_EQ(result, expected_result);
 }
