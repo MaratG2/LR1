@@ -1,19 +1,80 @@
 #include "lr1.h"
+#include <cmath>
+#include <string>
+#include <map>
 
-std::vector<float> process(const std::vector<float>& arr, const std::pair<int, int>& cs) 
+class Error
 {
-    float min_element = arr[cs.first];
-    std::vector<float> results = arr;
-    for (int i = cs.first; i <= cs.second; i++)
+public:
+    int code;
+    std::string message;
+    Error(int _code, std::string _message)
     {
-        if (results[i] < min_element)
-            min_element = results[i];
+        code = _code;
+        message = _message;
+    }
+    std::string ToString()
+    {
+        return code + ". " + message;
+    }
+};
+
+class Result
+{
+public:
+    std::pair<int, float> min;
+    std::vector<float> initial;
+    std::vector<float> corrected;
+    std::vector<Error> errors;
+    Result(std::pair<int, float> _min, std::vector<float> _initial, std::vector<float> _corrected, std::vector<Error> _errors)
+    {
+        min = _min;
+        initial = _initial;
+        corrected = _corrected;
+        errors = _errors;
+    }
+};
+
+std::map<int, Error*> ERRORS_MAP = 
+{
+    { 1, new Error(1, "Сообщение ошибки 1")},
+    { 2, new Error(2, "Сообщение ошибки 2")},
+    { 3, new Error(3, "Сообщение ошибки 3") }
+};
+
+Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
+{
+    std::vector<Error> errors_caught;
+    std::pair<int, float> min(-1, std::nanf(""));
+    std::vector<float> res = arr;
+
+    for (int i = 0; i <= arr.size(); i++)
+    {
+        if (arr[i] < min.second)
+        {
+            if (arr[i] > cs.first)
+            {
+                if (arr[i] < cs.second)
+                {
+                    min.first = i;
+                    min.second = arr[i];
+                }
+            }
+        }
     }
 
-    for (int i = cs.first; i <= cs.second; i++)
+    for (int i = 0; i <= arr.size(); i++)
     {
-        results[i] = min_element;
+        if (res[i] > cs.first)
+        {
+            if (res[i] < cs.second)
+            {
+                res[i] = min.second;
+            }
+        }
     }
+
+    Result results(min, arr, res, errors_caught);
 
     return results;
 }
