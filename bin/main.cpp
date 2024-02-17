@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <lib/lr1.h>
 
 //Вопросы:
@@ -35,13 +36,16 @@ int main()
 {
     std::vector<float> arr = { 3/7.0, 1933 / 77.0, 12, 15, 999999, 135/17.0*31, 3, -91/5.0, 1/9999999.0, 0, 7/9.0, 3.1415, 35};
     std::pair<int, int> cs = {1.0, 15*2.352};
-    Result result();
-    result = process(arr, cs);
+    Result result = process(arr, cs);
+    std::cout << "First index and value: " << result.min.first << " | " << result.min.second;
+    std::cout << std::endl;
     std::cout << "Source elements: ";
-    printArray(arr);
+    printArray(result.initial);
     std::cout << std::endl;
     std::cout << "Modified elemets:";
-    printArray(result_arr);
+    printArray(result.corrected);
+    std::cout << std::endl;
+    std::cout << "Array of errors: " << result.errors.size();
     std::cout << std::endl;
     return 0;
 }
