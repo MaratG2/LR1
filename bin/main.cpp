@@ -1,6 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <lib/lr1.h>
+#include <filesystem>
+
+const std::string DATA_PATH = "../../LR1/Data/";
 
 //Вопросы:
 //1. (c1, c2) - включительно? включительно
@@ -34,8 +38,19 @@ void printArray(const std::vector<float>& arr)
 
 int main() 
 {
-    std::vector<float> arr = { 3/7.0, 1933 / 77.0, 12, 15, 999999, 135/17.0*31, 3, -91/5.0, 1/9999999.0, 0, 7/9.0, 3.1415, 35};
-    std::pair<int, int> cs = {1.0, 15*2.352};
+    setlocale(LC_ALL, "Russian");
+
+    float input_value;
+    std::ifstream data_file(DATA_PATH + "data2.txt");
+    std::vector<float> arr;
+    while (data_file >> input_value)
+        arr.push_back(input_value);
+    std::pair<float, float> cs;
+    cs.second = arr.back();
+    arr.pop_back();
+    cs.first = arr.back();
+    arr.pop_back();
+
     Result result = process(arr, cs);
     std::cout << "First index and value: " << result.min.first << " | " << result.min.second;
     std::cout << std::endl;
@@ -45,7 +60,14 @@ int main()
     std::cout << "Modified elemets:";
     printArray(result.corrected);
     std::cout << std::endl;
-    std::cout << "Array of errors: " << result.errors.size();
+    std::cout << "Array of errors: \n";
+    for (int i = 0; i < result.errors.size(); i++)
+    {
+        if (i == 0)
+            std::cout << result.errors[i]->ToString();
+        else
+            std::cout << result.errors[i]->ToString();
+    }
     std::cout << std::endl;
     return 0;
 }
