@@ -6,51 +6,68 @@
 // Подробнее https://google.github.io/googletest/reference/testing.html
 
 // Тестовый класс
-class ProcessTest : public ::testing::Test
-{
+class CountAndSumTest : public ::testing::Test {
 protected:
     // Здесь вы можете добавить дополнительные настройки для тестов
     // в функции SetUp()
-    void SetUp() override 
-    {
+    void SetUp() override {
         // Например, инициализация данных
-        arr = { 3 / 7.0, 1933 / 77.0, 12, 15, 999999, 135 / 17.0 * 31, 3, -91 / 5.0, 1 / 9999999.0, 0, 7 / 9.0, 3.1415, 35 };
-        cs = { 2, 5 };
+        arr = {10, 14, 15, 20, 21, 25, 30};
     }
 
     // Здесь вы можете освободить ресурсы, если это необходимо
     // в функции TearDown()
-    void TearDown() override 
-    {
+    void TearDown() override {
         // Например, очистка данных
         arr.clear();
     }
 
     // Объявляем переменные, которые будут использоваться в тестах
-    std::vector<float> arr;
-    std::pair<int, int> cs;
-    std::vector<float> result;
+    std::vector<int> arr;
+    std::pair<int, int> result;
 };
 
 // Пример теста1
-TEST_F(ProcessTest, CTest1) 
-{
-// Вызываем функцию process с тестовыми данными
-    result = process(arr, cs);
+TEST_F(CountAndSumTest, CTest1) {
+// Вызываем функцию countAndSum с тестовыми данными
+    result = countAndSum(arr);
 
 // Проверяем ожидаемые результаты
-    std::vector<float> expected_result = { 3 / 7.0, 1933 / 77.0, 12, 12, 12, 12, 3, -91 / 5.0, 1 / 9999999.0, 0, 7 / 9.0, 3.1415, 35 };
-    EXPECT_EQ(result, expected_result);
+    EXPECT_EQ(result.first, 5);
+    EXPECT_EQ(result.second, 100);
 }
 
-// Пример теста2
-TEST_F(ProcessTest, CTest2)
-{
-// Вызываем функцию process с тестовыми данными
-    std::pair<int, int> test_cs = { 2, 6 };
-    result = process(arr, test_cs);
+// Пример теста111111
+TEST_F(CountAndSumTest, CTest11111) {
+// Вызываем функцию countAndSum с тестовыми данными
+    result = countAndSum(arr);
 
 // Проверяем ожидаемые результаты
-    std::vector<float> expected_result = { 3 / 7.0, 1933 / 77.0, 3, 3, 3, 3, 3, -91 / 5.0, 1 / 9999999.0, 0, 7 / 9.0, 3.1415, 35 };
-    EXPECT_EQ(result, expected_result);
+    EXPECT_EQ(result.first, 5);
+    EXPECT_EQ(result.second, 100);
+}
+
+// Пример теста 2
+TEST_F(CountAndSumTest, CTest2) {
+// Вызываем функцию countAndSum с тестовыми данными
+    result = countAndSum(arr);
+
+// Проверяем ожидаемые результаты
+    EXPECT_EQ(result.first, 15);
+    EXPECT_EQ(result.second, 100);
+}
+
+// Пример теста3
+TEST(CountAndSumTest1, CTest3) {
+    // Объявляем переменные, которые будут использоваться в тесте
+    std::vector<int> arr;
+    std::pair<int, int> result;
+    // Инициализация данных
+    arr = {10, 14, 15, 20, 21, 25, 30, 35, 5};
+// Вызываем функцию countAndSum с тестовыми данными
+    result = countAndSum(arr);
+
+// Проверяем ожидаемые результаты
+    EXPECT_EQ(result.first, 6);
+    EXPECT_EQ(result.second, 105);
 }

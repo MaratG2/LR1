@@ -1,51 +1,12 @@
 #include <iostream>
-#include <string>
+#include <vector>
+
 #include <lib/lr1.h>
 
-//¬опросы:
-//1. (c1, c2) - включительно? включительно
-// если несколько минимальных, то первый возвращаем, даже если одинаковые есть
-//2. (c1, c2) - индексы? - сами действительные числа. 
-//   “о есть минимум не может быть меньше c1. Ќам нужно вз€ть степень точности, с которой провер€ть
-//3. Ќапечатать исходный и скорректированный массивы: оба печатать, чтобы отследить
-//   в каком формате? ћожно сначала
-//   в одну строку вывести весь исходный, элементы через зап€тую, пробел после зап€той,
-//   потом на новой строке новый массив в таком же формате?
-// печатать не надо, мы их возвращаемы, мы не печатаем , точность - 6 могу - надо объ€снить, почему не 7 и не 8? 
-//4. ћожно ли оставл€ть после точки нули?
-//5. ѕочему сравнение векторов 2 теста не проход€т, хот€ должны?
-//6. ƒелать ли ввод размера массива и элементов массива? »ли можно заранее заданные. 
-//   ћаксимум 1024 элемента, больше можно - провер€ть.
-//7. ћассив ошибок -  аждую ошибку на новой строке выводить, формат например код: по€снение? 
-//    ласс сделать с двум€ пол€ми, вектор классов?
-//   ¬озвращаем структуру данных
-//   ≈сли не нашлось, то минмум и индекс возвращать какие? -1 дл€ индекса и std::nanf дл€ значени€
-
-void printArray(const std::vector<float>& arr)
-{
-    for (int i = 0; i < arr.size(); i++)
-    {
-        if (i == 0)
-            printf("%f", arr[i]);
-        else
-            printf(" %f", arr[i]);
-    }
-}
-
-int main() 
-{
-    std::vector<float> arr = { 3/7.0, 1933 / 77.0, 12, 15, 999999, 135/17.0*31, 3, -91/5.0, 1/9999999.0, 0, 7/9.0, 3.1415, 35};
-    std::pair<int, int> cs = {1.0, 15*2.352};
-    Result result = process(arr, cs);
-    std::cout << "First index and value: " << result.min.first << " | " << result.min.second;
-    std::cout << std::endl;
-    std::cout << "Source elements: ";
-    printArray(result.initial);
-    std::cout << std::endl;
-    std::cout << "Modified elemets:";
-    printArray(result.corrected);
-    std::cout << std::endl;
-    std::cout << "Array of errors: " << result.errors.size();
-    std::cout << std::endl;
+int main() {
+    std::vector<int> arr = {10, 14, 15, 20, 21, 25, 30};
+    std::pair<int, int> result = countAndSum(arr);
+    std::cout << "Number of elements that are divisible by 5 and not divisible by 7: " << result.first << std::endl;
+    std::cout << "Sum: " << result.second << std::endl;
     return 0;
 }
