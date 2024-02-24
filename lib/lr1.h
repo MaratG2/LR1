@@ -50,14 +50,16 @@ public:
 Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
 {
     std::vector< std::shared_ptr<Error>> errors_caught;
+    std::pair<int, float> min(-1, std::nanf(""));
+    std::vector<float> res = arr;
 
     if (arr.size() > 1024)
     {
         errors_caught.push_back(ERRORS_MAP[1]);
+        Result results(min, arr, res, errors_caught);
+        return results;
     }
 
-    std::pair<int, float> min(-1, std::nanf(""));
-    std::vector<float> res = arr;
     bool _notSet = true;
 
     for (int i = 0; i < arr.size(); i++)
