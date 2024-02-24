@@ -41,7 +41,7 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "data2.txt");
+    std::ifstream data_file(DATA_PATH + "data512.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -51,23 +51,16 @@ int main()
     cs.first = arr.back();
     arr.pop_back();
 
+    std::cout << "From: " << cs.first << " | To: " << cs.second << std::endl;
     Result result = process(arr, cs);
-    std::cout << "First index and value: " << result.min.first << " | " << result.min.second;
-    std::cout << std::endl;
+    std::cout << "First index and value: " << result.min.first << " | " << result.min.second << std::endl;
     std::cout << "Source elements: ";
     printArray(result.initial);
-    std::cout << std::endl;
-    std::cout << "Modified elemets:";
+    std::cout << "\nModified elemets: ";
     printArray(result.corrected);
-    std::cout << std::endl;
-    std::cout << "Array of errors: \n";
+    std::cout << "\nArray of errors:";
     for (int i = 0; i < result.errors.size(); i++)
-    {
-        if (i == 0)
-            std::cout << result.errors[i]->ToString();
-        else
-            std::cout << result.errors[i]->ToString();
-    }
-    std::cout << std::endl;
+        std::cout << std::endl << result.errors[i]->ToString();
+
     return 0;
 }
