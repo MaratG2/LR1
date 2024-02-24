@@ -26,8 +26,8 @@ private:
 std::map<int, std::shared_ptr<Error>> ERRORS_MAP =
 {
     { 1, std::make_shared <Error>(1, "Количество элементов массива не может быть больше 1024")},
-    { 2, std::make_shared <Error>(2, "Сообщение ошибки 2")},
-    { 3, std::make_shared <Error>(3, "Сообщение ошибки 3")}
+    { 2, std::make_shared <Error>(2, "Сообщение об ошибке")},
+    { 3, std::make_shared <Error>(3, "Сообщение об ошибке")}
 };
 
 class Result
@@ -47,11 +47,37 @@ public:
     }
 };
 
+bool floatEquals(float a, float b, int precision = 6) 
+{
+    float epsilon = std::pow(10, -precision);
+    return std::abs(a - b) < epsilon;
+}
+
+bool floatLess(float a, float b, int precision = 6)
+{
+    float epsilon = std::pow(10, -precision);
+    return (b - a) > epsilon;
+}
+
+bool floatMore(float a, float b, int precision = 6)
+{
+    float epsilon = std::pow(10, -precision);
+    return (a - b) > epsilon;
+}
+
+bool PRINT_STEP(int step) 
+{
+    std::cout << "[TEST OUTPUT] Step: " << step << std::endl;
+    return true;
+}
+
+
 Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
 {
-    std::vector< std::shared_ptr<Error>> errors_caught;
-    std::pair<int, float> min(-1, std::nanf(""));
-    std::vector<float> res = arr;
+    PRINT_STEP(1);
+    std::vector< std::shared_ptr<Error>> errors_caught; //1
+    std::pair<int, float> min(-1, std::nanf("")); //1
+    std::vector<float> res = arr; //1
 
     if (arr.size() > 1024)
     {
@@ -64,11 +90,11 @@ Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
 
     for (int i = 0; i < arr.size(); i++)
     {
-        if (arr[i] < min.second || _notSet)
+        if (floatLess(arr[i], min.second) || _notSet)
         {
-            if (arr[i] > cs.first)
+            if (floatMore(arr[i], cs.first))
             {
-                if (arr[i] < cs.second)
+                if (floatLess(arr[i], cs.second))
                 {
                     min.first = i;
                     min.second = arr[i];
@@ -80,9 +106,9 @@ Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
 
     for (int i = 0; i < arr.size(); i++)
     {
-        if (res[i] > cs.first)
+        if (floatMore(res[i], cs.first))
         {
-            if (res[i] < cs.second)
+            if (floatLess(res[i], cs.second))
             {
                 res[i] = min.second;
             }

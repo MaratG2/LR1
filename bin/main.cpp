@@ -24,15 +24,16 @@ const std::string DATA_PATH = "../../LR1/Data/";
 //   Класс сделать с двумя полями, вектор классов?
 //   Возвращаем структуру данных
 //   Если не нашлось, то минмум и индекс возвращать какие? -1 для индекса и std::nanf для значения
+//8. Необязательно ведь c2 больше c1? Это не будет считаться ошибкой? Просто в интервал ничего не попадет
 
 void printArray(const std::vector<float>& arr)
 {
     for (int i = 0; i < arr.size(); i++)
     {
         if (i == 0)
-            printf("%f", arr[i]);
+            printf("%.6f", arr[i]);
         else
-            printf(" %f", arr[i]);
+            printf(" %.6f", arr[i]);
     }
 }
 
@@ -41,7 +42,7 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "data1025.txt");
+    std::ifstream data_file(DATA_PATH + "data1024.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -51,7 +52,7 @@ int main()
     cs.first = arr.back();
     arr.pop_back();
 
-    std::cout << "From: " << cs.first << " | To: " << cs.second << std::endl;
+    printf("From: %.6f | To: %.6f\n", cs.first, cs.second);
     Result result = process(arr, cs);
     std::cout << "First index and value: " << result.min.first << " | " << result.min.second << std::endl;
     std::cout << "Source elements: ";
