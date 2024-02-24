@@ -31,9 +31,9 @@ void printArray(const std::vector<float>& arr)
     for (int i = 0; i < arr.size(); i++)
     {
         if (i == 0)
-            printf("%.6f", arr[i]);
+            printf("%g", arr[i]);
         else
-            printf(" %.6f", arr[i]);
+            printf(" %g", arr[i]);
     }
 }
 
@@ -42,7 +42,7 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "data1024.txt");
+    std::ifstream data_file(DATA_PATH + "data1025.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -52,12 +52,12 @@ int main()
     cs.first = arr.back();
     arr.pop_back();
 
-    printf("From: %.6f | To: %.6f\n", cs.first, cs.second);
+    printf("From: %g | To: %g\n", cs.first, cs.second);
     Result result = process(arr, cs);
     std::cout << "First index and value: " << result.min.first << " | " << result.min.second << std::endl;
     std::cout << "Source elements: ";
     printArray(result.initial);
-    std::cout << "\nModified elemets: ";
+    std::cout << "\n\nModified elemets: ";
     printArray(result.corrected);
     std::cout << "\nArray of errors:";
     for (int i = 0; i < result.errors.size(); i++)
