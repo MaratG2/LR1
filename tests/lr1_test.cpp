@@ -60,15 +60,3 @@ TEST_F(ProcessTest, CTest1)
     EXPECT_EQ(result.min.second, expected_min.second);
     EXPECT_EQ(result.errors, errors_caught);
 }
-
-// Пример теста2
-TEST_F(ProcessTest, CTest2)
-{
-// Вызываем функцию process с тестовыми данными
-//    std::pair<int, int> test_cs = { 2, 6 };
-//    result = process(arr, test_cs);
-
-// Проверяем ожидаемые результаты
-//    std::vector<float> expected_result = { 3 / 7.0, 1933 / 77.0, 3, 3, 3, 3, 3, -91 / 5.0, 1 / 9999999.0, 0, 7 / 9.0, 3.1415, 35 };
-//    EXPECT_EQ(result, expected_result);
-}
