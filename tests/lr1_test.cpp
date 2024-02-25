@@ -31,11 +31,11 @@ protected:
     // Объявляем переменные, которые будут использоваться в тестах
 };
 
-// Пример теста1
-TEST_F(ProcessTest, CTest1) 
+// Тест 2
+TEST_F(ProcessTest, CTest2) 
 {
     float input_value;
-    std::ifstream data_file(DATA_PATH + "test1.txt");
+    std::ifstream data_file(DATA_PATH + "test2.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -52,11 +52,12 @@ TEST_F(ProcessTest, CTest1)
     std::vector<float> expected_initial = {};
     std::vector<float> expected_corrected = {};
     std::pair<int, float> expected_min(-1, std::nanf(""));
-    std::vector<std::shared_ptr<Error>> errors_caught;
+    std::vector<std::shared_ptr<Error>> errors_caught = {};
 
     EXPECT_EQ(result.initial, expected_initial);
     EXPECT_EQ(result.corrected, expected_corrected);
     EXPECT_EQ(result.min.first, expected_min.first);
-    EXPECT_EQ(result.min.second, expected_min.second);
-    EXPECT_EQ(result.errors, errors_caught);
+    EXPECT_FALSE(result.min.second == result.min.second);
+    EXPECT_FALSE(expected_min.second == expected_min.second);
+    EXPECT_EQ(result.errors.size(), errors_caught.size());
 }
