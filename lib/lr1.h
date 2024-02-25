@@ -75,7 +75,7 @@ bool PRINT_STEP(int step)
 Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
 {
     PRINT_STEP(1); //1
-    std::vector< std::shared_ptr<Error>> errors_caught; //1
+    std::vector<std::shared_ptr<Error>> errors_caught; //1
     std::pair<int, float> min(-1, std::nanf("")); //1
     std::vector<float> res = arr; //1
 
