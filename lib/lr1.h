@@ -79,7 +79,7 @@ Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
     std::pair<int, float> min(-1, std::nanf("")); //1
     std::vector<float> res = arr; //1
 
-    if (arr.size() > 1024 && PRINT_STEP(2)) //2
+    if (PRINT_STEP(2) && arr.size() > 1024) //2
     {
         PRINT_STEP(3); //3
         errors_caught.push_back(ERRORS_MAP[1]); //3
@@ -92,44 +92,44 @@ Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
     bool _notSet = true; //5
     int i = 0; //5
 
-    while (i < arr.size() && PRINT_STEP(6)) //6
+    while (PRINT_STEP(6) && i < arr.size()) //6
     {
-        if ((floatLess(arr[i], min.second) && PRINT_STEP(7)) || (_notSet && PRINT_STEP(8))) //7, 8
+        if ((PRINT_STEP(7) && floatLess(arr[i], min.second)) || (PRINT_STEP(8) && _notSet)) //7, 8
         {
-            if (floatMore(arr[i], cs.first) && PRINT_STEP(9)) //9
+            if (PRINT_STEP(9) && floatMore(arr[i], cs.first)) //9
             {
-                if (floatLess(arr[i], cs.second) && PRINT_STEP(10)) //10
+                if (PRINT_STEP(10) && floatLess(arr[i], cs.second)) //10
                 {
                     PRINT_STEP(11); //11
                     min.first = i; //11
                     min.second = arr[i]; //11
                     _notSet = false; //11
-                    PRINT_STEP(12); //12
                 } //12
-                PRINT_STEP(13); //13
+                PRINT_STEP(12); //12
             } //13
-            PRINT_STEP(14); //14
+            PRINT_STEP(13); //13
         } //14
+        PRINT_STEP(14); //14
         i++; //14
-        PRINT_STEP(15); //15
     } //15
+    PRINT_STEP(15); //15
     PRINT_STEP(16); //16
     i = 0; //16
-    while (i < arr.size() && PRINT_STEP(17)) //17
+    while (PRINT_STEP(17) && i < arr.size()) //17
     {
-        if (floatMore(res[i], cs.first) && PRINT_STEP(18)) //18
+        if (PRINT_STEP(18) && floatMore(res[i], cs.first)) //18
         {
-            if (floatLess(res[i], cs.second) && PRINT_STEP(19)) //19
+            if (PRINT_STEP(19) && floatLess(res[i], cs.second)) //19
             {
                 PRINT_STEP(20); //20
                 res[i] = min.second; //20
-                PRINT_STEP(21); //21
             } //21
-            PRINT_STEP(22); //22
+            PRINT_STEP(21); //21
         } //22
+        PRINT_STEP(22); //22
         i++; //22
-        PRINT_STEP(23); //23
     } //23
+    PRINT_STEP(23); //23
     PRINT_STEP(24); //24
     Result results(min, arr, res, errors_caught); //24
     PRINT_STEP(4); //4
