@@ -4,7 +4,7 @@
 #include <lib/lr1.h>
 #include <filesystem>
 
-const std::string DATA_PATH = "../../LR1/Data/";
+const std::string DATA_PATH = "../../LR1/tests/data/";
 
 //Вопросы:
 //1. (c1, c2) - включительно? включительно
