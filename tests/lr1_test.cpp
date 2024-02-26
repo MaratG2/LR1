@@ -237,3 +237,40 @@ TEST_F(ProcessTest, CTest6)
     EXPECT_EQ(result.min.second, expected_min.second);
     EXPECT_EQ(result.errors.size(), errors_caught.size());
 }
+
+// Тест 7
+TEST_F(ProcessTest, CTest7)
+{
+    std::vector<float> expected_corrected = {};
+    std::vector<float> expected_initial = {};
+    std::pair<int, float> expected_min(6, 12115422.451544);
+
+    float input_value;
+    std::ifstream data_file(DATA_PATH + "data1024.txt");
+    std::vector<float> arr;
+    while (data_file >> input_value)
+        arr.push_back(input_value);
+    std::pair<float, float> cs;
+    cs.second = arr.back();
+    arr.pop_back();
+    cs.first = arr.back();
+    arr.pop_back();
+
+    expected_initial = arr;
+
+    std::ifstream data_file(DATA_PATH + "data1024_expected.txt");
+    while (data_file >> input_value)
+        expected_corrected.push_back(input_value);
+
+    // Вызываем функцию process с тестовыми данными
+    Result result = process(arr, cs);
+
+    // Проверяем ожидаемые результаты
+    std::vector<std::shared_ptr<Error>> errors_caught = {};
+
+    EXPECT_EQ(result.initial, expected_initial);
+    EXPECT_EQ(result.corrected, expected_corrected);
+    EXPECT_EQ(result.min.first, expected_min.first);
+    EXPECT_EQ(result.min.second, expected_min.second);
+    EXPECT_EQ(result.errors.size(), errors_caught.size());
+}

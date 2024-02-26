@@ -43,7 +43,7 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "test6.txt");
+    std::ifstream data_file(DATA_PATH + "data1024.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
