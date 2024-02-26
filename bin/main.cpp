@@ -3,6 +3,7 @@
 #include <string>
 #include <lib/lr1.h>
 #include <filesystem>
+#include <limits>
 
 const std::string DATA_PATH = "../../LR1/tests/data/";
 
@@ -43,16 +44,30 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "data1024.txt");
+    std::ifstream data_file(DATA_PATH + "data_range_out1.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
-        arr.push_back(input_value);
+    {
+        bool isInBounds = ((floatMore(input_value, -1 * std::numeric_limits<float>().max()) &&
+                            floatLess(input_value, -1 * std::numeric_limits<float>().min()) ||
+                            floatEquals(input_value, 0.0f) || (
+                            floatMore(input_value, std::numeric_limits<float>().min()) &&
+                            floatLess(input_value, std::numeric_limits<float>().max()))));
+        //std::cout << input_value << " | " << std::numeric_limits<float>().min() << " | " <<
+        //    std::numeric_limits<float>().max() << " | " << isInBounds << std::endl;
+        if (isInBounds)
+            arr.push_back(input_value);
+    }
+    if (arr.size() < 2)
+    {
+        std::cout << "Данные представлены неверно";
+        return 0;
+    }
     std::pair<float, float> cs;
     cs.second = arr.back();
     arr.pop_back();
     cs.first = arr.back();
     arr.pop_back();
-
     printf("From: %g | To: %g\n", cs.first, cs.second);
     Result result = process(arr, cs);
     std::cout << "First index and value: " << result.min.first << " | " << result.min.second << std::endl;
@@ -64,8 +79,5 @@ int main()
     for (int i = 0; i < result.errors.size(); i++)
         std::cout << std::endl << result.errors[i]->ToString();
 
-    std::ofstream data_file2(DATA_PATH + "data1024_res.txt");
-    for (int i = 0; i < result.corrected.size(); i++)
-        data_file2 << result.corrected[i] << std::endl;
     return 0;
 }
