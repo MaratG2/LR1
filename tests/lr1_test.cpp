@@ -258,8 +258,8 @@ TEST_F(ProcessTest, CTest7)
 
     expected_initial = arr;
 
-    std::ifstream data_file(DATA_PATH + "data1024_expected.txt");
-    while (data_file >> input_value)
+    std::ifstream data_file2(DATA_PATH + "data1024_expected.txt");
+    while (data_file2 >> input_value)
         expected_corrected.push_back(input_value);
 
     // Вызываем функцию process с тестовыми данными
