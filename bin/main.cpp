@@ -64,5 +64,8 @@ int main()
     for (int i = 0; i < result.errors.size(); i++)
         std::cout << std::endl << result.errors[i]->ToString();
 
+    std::ofstream data_file2(DATA_PATH + "data1024_res.txt");
+    for (int i = 0; i < result.corrected.size(); i++)
+        data_file2 << result.corrected[i] << std::endl;
     return 0;
 }
