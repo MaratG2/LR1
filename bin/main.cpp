@@ -53,14 +53,12 @@ int main()
                             input_value == 0.0 || (
                             input_value > (double)(std::numeric_limits<float>().min()) &&
                             input_value < (double)(std::numeric_limits<float>().max()));
-        //std::cout << input_value << " | " << std::numeric_limits<float>().min() << " | " <<
-        //    std::numeric_limits<float>().max() << " | " << isInBounds << std::endl;
         if (isInBounds)
             arr.push_back((float)input_value);
     }
     if (arr.size() < 2)
     {
-        std::cout << "Данные представлены неверно";
+        std::cout << "Данные введены неверно";
         return 0;
     }
     std::pair<float, float> cs;
