@@ -26,7 +26,7 @@ const std::string DATA_PATH = "../../LR1/tests/data/";
 //   Возвращаем структуру данных
 //   Если не нашлось, то минмум и индекс возвращать какие? -1 для индекса и std::nanf для значения
 // 
-//8. Необязательно ведь c2 больше c1? Это не будет считаться ошибкой? Просто в интервал ничего не попадет
+//8. Необязательно ведь c2 больше c1? Это не будет считаться ошибкой? Это ошибка вторая
 
 void printArray(const std::vector<float>& arr)
 {
@@ -43,20 +43,20 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
 
-    float input_value;
+    double input_value;
     std::ifstream data_file(DATA_PATH + "data_range_out1.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
     {
-        bool isInBounds = ((floatMore(input_value, -1 * std::numeric_limits<float>().max()) &&
-                            floatLess(input_value, -1 * std::numeric_limits<float>().min()) ||
-                            floatEquals(input_value, 0.0f) || (
-                            floatMore(input_value, std::numeric_limits<float>().min()) &&
-                            floatLess(input_value, std::numeric_limits<float>().max()))));
+        bool isInBounds = ((input_value > (double)(- 1 * std::numeric_limits<float>().max())) &&
+                            input_value < (double)(- 1 * std::numeric_limits<float>().min())) ||
+                            input_value == 0.0 || (
+                            input_value > (double)(std::numeric_limits<float>().min()) &&
+                            input_value < (double)(std::numeric_limits<float>().max()));
         //std::cout << input_value << " | " << std::numeric_limits<float>().min() << " | " <<
         //    std::numeric_limits<float>().max() << " | " << isInBounds << std::endl;
         if (isInBounds)
-            arr.push_back(input_value);
+            arr.push_back((float)input_value);
     }
     if (arr.size() < 2)
     {
