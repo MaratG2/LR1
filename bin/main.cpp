@@ -44,25 +44,52 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     double input_value;
-    std::ifstream data_file(DATA_PATH + "Test5_1.txt");
+    std::ifstream data_file(DATA_PATH + "Test6_9.txt");
     std::vector<float> arr;
     int len = 0;
+    bool isLastInBounds = false;
     while (data_file >> input_value)
     {
+        isLastInBounds = false;
         bool isInBounds = ((static_cast<float>(input_value) >= std::numeric_limits<float>().lowest()) &&
             static_cast<float>(input_value) <= (std::numeric_limits<float>().max()));
         if (isInBounds)
+        {
             arr.push_back((float)input_value);
+            isLastInBounds = true;
+        }
         len++;
     }
     //std::cout << len << " | " << arr.size() << std::endl;
     std::pair<float, float> cs(std::nanf(""), std::nanf(""));
-    if (arr.size() > 0 && arr.size() >= len)
+    if (arr.size() > 0 && arr.size() >= len - 1 && isLastInBounds)
+    {
+        cs.second = arr.back();
+        arr.pop_back();
+        if (arr.size() >= len - 1)
+        {
+            cs.first = arr.back();
+            arr.pop_back();
+        }
+    }
+    if (arr.size() > 0 && arr.size() >= len - 1 && !isLastInBounds)
+    {
+        cs.first = arr.back();
+        arr.pop_back();
+    }
+    if (arr.size() == 2 && len > 2)
+    {
+        cs.second = arr.back();
+        arr.pop_back();
+        cs.first = arr.back();
+        arr.pop_back();
+    }
+    if (arr.size() == 1 && len > 1 && isLastInBounds)
     {
         cs.second = arr.back();
         arr.pop_back();
     }
-    if (arr.size() > 0 && arr.size() >= len - 1)
+    if (arr.size() == 1 && len > 1 && !isLastInBounds)
     {
         cs.first = arr.back();
         arr.pop_back();
