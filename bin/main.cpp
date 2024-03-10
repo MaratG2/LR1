@@ -44,7 +44,7 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     double input_value;
-    std::ifstream data_file(DATA_PATH + "data_range_out1.txt");
+    std::ifstream data_file(DATA_PATH + "control6.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
     {

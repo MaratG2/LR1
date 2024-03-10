@@ -66,7 +66,7 @@ bool floatMore(float a, float b, int precision = 6)
 
 bool PRINT_STEP(int step) 
 {
-    //std::cout << "[TEST OUTPUT] Step: " << step << std::endl;
+    std::cout << "[TEST OUTPUT] Step: " << step << std::endl;
     return true;
 }
 
