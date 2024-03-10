@@ -44,25 +44,29 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     double input_value;
-    std::ifstream data_file(DATA_PATH + "control6.txt");
+    std::ifstream data_file(DATA_PATH + "Test5_1.txt");
     std::vector<float> arr;
+    int len = 0;
     while (data_file >> input_value)
     {
-        bool isInBounds = ((input_value > (double)(- 1 * std::numeric_limits<float>().max())) &&
-                            input_value < (double)(std::numeric_limits<float>().max()));
+        bool isInBounds = ((static_cast<float>(input_value) >= std::numeric_limits<float>().lowest()) &&
+            static_cast<float>(input_value) <= (std::numeric_limits<float>().max()));
         if (isInBounds)
             arr.push_back((float)input_value);
+        len++;
     }
-    if (arr.size() < 2)
+    //std::cout << len << " | " << arr.size() << std::endl;
+    std::pair<float, float> cs(std::nanf(""), std::nanf(""));
+    if (arr.size() > 0 && arr.size() >= len)
     {
-        std::cout << "Данные введены неверно";
-        return 0;
+        cs.second = arr.back();
+        arr.pop_back();
     }
-    std::pair<float, float> cs;
-    cs.second = arr.back();
-    arr.pop_back();
-    cs.first = arr.back();
-    arr.pop_back();
+    if (arr.size() > 0 && arr.size() >= len - 1)
+    {
+        cs.first = arr.back();
+        arr.pop_back();
+    }
     printf("From: %g | To: %g\n", cs.first, cs.second);
     Result result = process(arr, cs);
     std::cout << "First index and value: " << result.min.first << " | " << result.min.second << std::endl;
