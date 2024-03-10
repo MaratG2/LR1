@@ -49,9 +49,6 @@ int main()
     while (data_file >> input_value)
     {
         bool isInBounds = ((input_value > (double)(- 1 * std::numeric_limits<float>().max())) &&
-                            input_value < (double)(- 1 * std::numeric_limits<float>().min())) ||
-                            input_value == 0.0 || (
-                            input_value > (double)(std::numeric_limits<float>().min()) &&
                             input_value < (double)(std::numeric_limits<float>().max()));
         if (isInBounds)
             arr.push_back((float)input_value);
