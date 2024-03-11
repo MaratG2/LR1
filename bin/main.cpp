@@ -44,7 +44,7 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     double input_value;
-    std::ifstream data_file(DATA_PATH + "Test6_9.txt");
+    std::ifstream data_file(DATA_PATH + "Test2_1.txt");
     std::vector<float> arr;
     int len = 0;
     bool isLastInBounds = false;
@@ -72,24 +72,24 @@ int main()
             arr.pop_back();
         }
     }
-    if (arr.size() > 0 && arr.size() >= len - 1 && !isLastInBounds)
+    else if (arr.size() > 0 && arr.size() >= len - 1 && !isLastInBounds)
     {
         cs.first = arr.back();
         arr.pop_back();
     }
-    if (arr.size() == 2 && len > 2)
+    else if (arr.size() == 2 && len > 2)
     {
         cs.second = arr.back();
         arr.pop_back();
         cs.first = arr.back();
         arr.pop_back();
     }
-    if (arr.size() == 1 && len > 1 && isLastInBounds)
+    else if (arr.size() == 1 && len > 1 && isLastInBounds)
     {
         cs.second = arr.back();
         arr.pop_back();
     }
-    if (arr.size() == 1 && len > 1 && !isLastInBounds)
+    else if (arr.size() == 1 && len > 1 && !isLastInBounds)
     {
         cs.first = arr.back();
         arr.pop_back();

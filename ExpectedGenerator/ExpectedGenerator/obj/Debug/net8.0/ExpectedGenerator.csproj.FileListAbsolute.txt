@@ -1,0 +1,15 @@
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\bin\Debug\net8.0\ExpectedGenerator.exe
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\bin\Debug\net8.0\ExpectedGenerator.deps.json
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\bin\Debug\net8.0\ExpectedGenerator.runtimeconfig.json
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\bin\Debug\net8.0\ExpectedGenerator.dll
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\bin\Debug\net8.0\ExpectedGenerator.pdb
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\ExpectedGenerator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\ExpectedGenerator.AssemblyInfoInputs.cache
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\ExpectedGenerator.AssemblyInfo.cs
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\ExpectedGenerator.csproj.CoreCompileInputs.cache
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\ExpectedGenerator.sourcelink.json
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\ExpectedGenerator.dll
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\refint\ExpectedGenerator.dll
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\ExpectedGenerator.pdb
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\ExpectedGenerator.genruntimeconfig.cache
+C:\Users\god79\source\repos\LR1\ExpectedGenerator\ExpectedGenerator\obj\Debug\net8.0\ref\ExpectedGenerator.dll
