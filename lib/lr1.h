@@ -67,10 +67,15 @@ bool PRINT_STEP(int step)
     return true;
 }
 
-std::pair<std::vector<float>, std::pair<float, float>> LoadTest(std::string name)
+std::pair<std::vector<float>, std::pair<float, float>> LoadTest(std::string name, bool isGoogle = false)
 {
+    std::string path;
+    if (isGoogle)
+        path = resolvePath(name);
+    else
+        path = DATA_PATH + name;
     double input_value;
-    std::ifstream data_file(DATA_PATH + name);
+    std::ifstream data_file(path);
     std::vector<float> arr;
     int len = 0;
     bool isLastInBounds = false;
@@ -121,6 +126,22 @@ std::pair<std::vector<float>, std::pair<float, float>> LoadTest(std::string name
         arr.pop_back();
     }
     return std::pair<std::vector<float>, std::pair<float, float>>(arr, cs);
+}
+
+
+inline std::string resolvePath(const std::string& relPath)
+{
+    auto baseDir = std::filesystem::current_path();
+    while (baseDir.has_parent_path())
+    {
+        auto combinePath = baseDir / relPath;
+        if (std::filesystem::exists(combinePath))
+        {
+            return combinePath.string();
+        }
+        baseDir = baseDir.parent_path();
+    }
+    throw std::runtime_error("File not found!");
 }
 
 Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)

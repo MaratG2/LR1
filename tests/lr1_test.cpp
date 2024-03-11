@@ -5,7 +5,7 @@
 #include <vector>
 #include <utility>
 
-const std::string DATA_PATH2 = "home/runner/work/LR1/LR1/build/tests/data/";
+const std::string DATA_PATH2 = "data/";
 
 
 // Подробнее https://google.github.io/googletest/reference/testing.html
@@ -31,24 +31,10 @@ protected:
     // Объявляем переменные, которые будут использоваться в тестах
 };
 
-inline std::string resolvePath(const std::string& relPath)
-{
-    auto baseDir = std::filesystem::current_path();
-    while (baseDir.has_parent_path())
-    {
-        auto combinePath = baseDir / relPath;
-        if (std::filesystem::exists(combinePath))
-        {
-            return combinePath.string();
-        }
-        baseDir = baseDir.parent_path();
-    }
-    throw std::runtime_error("File not found!");
-}
 
 std::vector<float> LoadExpected(std::string name)
 {
-    std::ifstream data_file(DATA_PATH2 + name);
+    std::ifstream data_file(resolvePath(DATA_PATH2 + name));
     std::vector<float> expected_corrected;
     float input_value;
     while (data_file >> input_value)
@@ -61,8 +47,8 @@ std::vector<float> LoadExpected(std::string name)
 // Тест 1-1
 TEST_F(ProcessTest, CTest1_1)
 {
-    std::vector<float> expected_corrected = LoadExpected("Test1_1_expected");
-    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test1_1.txt");
+    std::vector<float> expected_corrected = LoadExpected("Test1_1_expected.txt");
+    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest(DATA_PATH2 + "Test1_1.txt", true);
     std::vector<float> got_arr_initial = data.first;
     std::pair<float, float> got_cs = data.second;
 
