@@ -34,10 +34,10 @@ protected:
 
 std::vector<float> LoadExpected(std::string name)
 {
-    std::ifstream data_file(DATA_PATH2+name);
+    std::ifstream data_file2(DATA_PATH2+name);
     std::vector<float> expected_corrected;
     double input_value;
-    while (data_file >> input_value)
+    while (data_file2 >> input_value)
     {
         expected_corrected.push_back((float)input_value);
     }
@@ -47,7 +47,7 @@ std::vector<float> LoadExpected(std::string name)
 // Тест 1-1
 TEST_F(ProcessTest, CTest1_1)
 {
-    std::vector<float> expected_corrected = LoadExpected("Test1_1_expected.txt");
+    std::vector<float> expected_corrected = LoadExpected("Test1_1.txt");
     std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest(DATA_PATH2+"Test1_1.txt", true);
     std::vector<float> got_arr_initial = data.first;
     std::pair<float, float> got_cs = data.second;
