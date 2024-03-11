@@ -26,21 +26,15 @@ private:
     std::string _message;
 };
 
-std::map<int, std::shared_ptr<Error>> ERRORS_MAP =
-{
-    { 1, std::make_shared <Error>(1, "Количество элементов массива не может быть больше 1024")},
-    { 2, std::make_shared <Error>(2, "Нижняя граница не может быть больше верхней границы")},
-};
-
 class Result
 {
 public:
     std::pair<int, float> min;
     std::vector<float> initial;
     std::vector<float> corrected;
-    std::vector<std::shared_ptr<Error>> errors;
+    std::vector<Error> errors;
     Result(std::pair<int, float> _min, std::vector<float> _initial,
-        std::vector<float> _corrected, std::vector<std::shared_ptr<Error>> _errors)
+        std::vector<float> _corrected, std::vector<Error> _errors)
     {
         min = _min;
         initial = _initial;
@@ -73,7 +67,7 @@ bool PRINT_STEP(int step)
     return true;
 }
 
-std::pair<std::vector<float>, std::pair<float, float>> LoadTestAndSolve(std::string name)
+std::pair<std::vector<float>, std::pair<float, float>> LoadTest(std::string name)
 {
     double input_value;
     std::ifstream data_file(DATA_PATH + name);
@@ -132,14 +126,14 @@ std::pair<std::vector<float>, std::pair<float, float>> LoadTestAndSolve(std::str
 Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
 {
     PRINT_STEP(1); //1
-    std::vector<std::shared_ptr<Error>> errors_caught = {}; //1
+    std::vector<Error> errors_caught = {}; //1
     std::pair<int, float> min(-1, std::nanf("")); //1
     std::vector<float> res = arr; //1
     //1
     if (PRINT_STEP(2) && arr.size() > 1024) //2
     {
         PRINT_STEP(3); //3
-        errors_caught.push_back(ERRORS_MAP[1]); //3
+        errors_caught.push_back(Error(1, "Количество элементов массива не может быть больше 1024")); //3
         Result results(min, arr, res, errors_caught); //3
         PRINT_STEP(27); //27
         return results; //27
@@ -148,7 +142,7 @@ Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
     if (PRINT_STEP(4) && floatMore(cs.first, cs.second)) //4
     {
         PRINT_STEP(5); //5
-        errors_caught.push_back(ERRORS_MAP[2]); //5
+        errors_caught.push_back(Error(2, "Нижняя граница не может быть больше верхней границы")); //5
         Result results(min, arr, res, errors_caught); //5
         PRINT_STEP(27); //27
         return results; //27

@@ -47,7 +47,7 @@ std::vector<float> LoadExpected(std::string name)
 TEST_F(ProcessTest, CTest1_1)
 {
     std::vector<float> expected_corrected = LoadExpected("Test1_1_expected");
-    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTestAndSolve("Test1_1.txt");
+    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test1_1.txt");
     std::vector<float> got_arr_initial = data.first;
     std::pair<float, float> got_cs = data.second;
 
@@ -56,8 +56,8 @@ TEST_F(ProcessTest, CTest1_1)
 
     // Проверяем ожидаемые результаты
     std::pair<int, float> expected_min(-1, std::nanf(""));
-    std::vector<std::shared_ptr<Error>> errors_caught = {};
-    errors_caught.push_back(ERRORS_MAP[1]);
+    std::vector<Error> errors_caught = {};
+    errors_caught.push_back(Error(1, "Количество элементов массива не может быть больше 1024"));
 
     EXPECT_EQ(result.initial, got_arr_initial);
     EXPECT_EQ(result.corrected, expected_corrected);
@@ -65,5 +65,5 @@ TEST_F(ProcessTest, CTest1_1)
     EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_EQ(result.errors.size(), errors_caught.size());
-    EXPECT_EQ(result.errors[0]->ToString(), errors_caught[0]->ToString());
+    EXPECT_EQ(result.errors[0].ToString(), errors_caught[0].ToString());
 }
