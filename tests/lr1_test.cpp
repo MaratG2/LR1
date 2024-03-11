@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <utility>
+namespace fs = std::filesystem;
 
 const std::string DATA_PATH2 = "../../LR1/tests/data/";
 
@@ -47,7 +48,7 @@ std::vector<float> LoadExpected(std::string name)
 TEST_F(ProcessTest, CTest1_1)
 {
     std::vector<float> expected_corrected = LoadExpected("Test1_1_expected.txt");
-    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test1_1.txt", false);
+    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test1_1.txt", true);
     std::vector<float> got_arr_initial = data.first;
     std::pair<float, float> got_cs = data.second;
 
@@ -69,4 +70,12 @@ TEST_F(ProcessTest, CTest1_1)
         EXPECT_EQ(result.errors[0].ToString(), errors_expected[0].ToString());
     EXPECT_FALSE(true) << got_arr_initial.size();
     EXPECT_FALSE(true) << result.corrected.size();
+
+    std::string path = "";
+    for (const auto& entry : fs::directory_iterator("./"))
+    {
+        path += entry.path().filename().string();
+        path += " | ";
+    }
+    EXPECT_FALSE(true) << path;
 }
