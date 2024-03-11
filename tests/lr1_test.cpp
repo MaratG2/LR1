@@ -5,7 +5,7 @@
 #include <vector>
 #include <utility>
 
-const std::string DATA_PATH2 = "home/runner/work/LR1/LR1/build/data/";
+const std::string DATA_PATH2 = "home/runner/work/LR1/LR1/build/tests/data/";
 
 
 // Подробнее https://google.github.io/googletest/reference/testing.html
