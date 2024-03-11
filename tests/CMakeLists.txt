@@ -29,3 +29,6 @@ target_include_directories(lr1_tests PUBLIC ${PROJECT_SOURCE_DIR})
 include(GoogleTest)
 
 gtest_discover_tests(lr1_tests)
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data
+DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
