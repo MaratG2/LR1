@@ -5,7 +5,7 @@
 #include <vector>
 #include <utility>
 
-const std::string DATA_PATH2 = "home/runner/work/LR1/LR1/build/data/tests/";
+const std::string DATA_PATH2 = "home/runner/work/LR1/LR1/build/data/";
 
 
 // Подробнее https://google.github.io/googletest/reference/testing.html
@@ -30,6 +30,21 @@ protected:
 
     // Объявляем переменные, которые будут использоваться в тестах
 };
+
+inline std::string resolvePath(const std::string& relPath)
+{
+    auto baseDir = std::filesystem::current_path();
+    while (baseDir.has_parent_path())
+    {
+        auto combinePath = baseDir / relPath;
+        if (std::filesystem::exists(combinePath))
+        {
+            return combinePath.string();
+        }
+        baseDir = baseDir.parent_path();
+    }
+    throw std::runtime_error("File not found!");
+}
 
 std::vector<float> LoadExpected(std::string name)
 {
