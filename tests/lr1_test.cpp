@@ -5,7 +5,7 @@
 #include <vector>
 #include <utility>
 
-const std::string DATA_PATH = "./data/";
+const std::string DATA_PATH2 = "./data/";
 
 
 // Подробнее https://google.github.io/googletest/reference/testing.html
@@ -33,7 +33,7 @@ protected:
 
 std::vector<float> LoadExpected(std::string name)
 {
-    std::ifstream data_file(DATA_PATH + name);
+    std::ifstream data_file(DATA_PATH2 + name);
     std::vector<float> expected_corrected;
     float input_value;
     while (data_file >> input_value)
@@ -43,7 +43,7 @@ std::vector<float> LoadExpected(std::string name)
     return expected_corrected;
 }
 
-// Тест 1-1
+// Тест 11
 TEST_F(ProcessTest, CTest1_1)
 {
     std::vector<float> expected_corrected = LoadExpected("Test1_1_expected");
@@ -72,7 +72,7 @@ TEST_F(ProcessTest, CTest1_1)
 TEST_F(ProcessTest, CTest2) 
 {
     float input_value;
-    std::ifstream data_file(DATA_PATH + "test2.txt");
+    std::ifstream data_file(DATA_PATH2 + "test2.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -106,7 +106,7 @@ TEST_F(ProcessTest, CTest3)
     std::vector<float> expected_initial = {};
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "test3.txt");
+    std::ifstream data_file(DATA_PATH2 + "test3.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -141,7 +141,7 @@ TEST_F(ProcessTest, CTest4)
     std::vector<float> expected_initial = {};
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "test4.txt");
+    std::ifstream data_file(DATA_PATH2 + "test4.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -176,7 +176,7 @@ TEST_F(ProcessTest, CTest5)
     std::vector<float> expected_initial = {};
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "test5.txt");
+    std::ifstream data_file(DATA_PATH2 + "test5.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -211,7 +211,7 @@ TEST_F(ProcessTest, CTest6)
     std::pair<int, float> expected_min(7, -3340774.007165);
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "test6.txt");
+    std::ifstream data_file(DATA_PATH2 + "test6.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -247,7 +247,7 @@ TEST_F(ProcessTest, CTest7)
     std::pair<int, float> expected_min(6, 12115422.451544);
 
     float input_value;
-    std::ifstream data_file(DATA_PATH + "data1024.txt");
+    std::ifstream data_file(DATA_PATH2 + "data1024.txt");
     std::vector<float> arr;
     while (data_file >> input_value)
         arr.push_back(input_value);
@@ -259,7 +259,7 @@ TEST_F(ProcessTest, CTest7)
 
     expected_initial = arr;
 
-    std::ifstream data_file2(DATA_PATH + "data1024_expected.txt");
+    std::ifstream data_file2(DATA_PATH2 + "data1024_expected.txt");
     while (data_file2 >> input_value)
         expected_corrected.push_back(input_value);
 
