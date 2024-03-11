@@ -47,7 +47,7 @@ std::vector<float> LoadExpected(std::string name)
 TEST_F(ProcessTest, CTest1_1)
 {
     std::vector<float> expected_corrected = LoadExpected("Test1_1_expected");
-    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test1_1.txt");
+    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTestAndSolve("Test1_1.txt");
     std::vector<float> got_arr_initial = data.first;
     std::pair<float, float> got_cs = data.second;
 
@@ -64,7 +64,6 @@ TEST_F(ProcessTest, CTest1_1)
     EXPECT_EQ(result.min.first, expected_min.first);
     EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
-    EXPECT_TRUE(false) << result.corrected.size();
     EXPECT_EQ(result.errors.size(), errors_caught.size());
     EXPECT_EQ(result.errors[0]->ToString(), errors_caught[0]->ToString());
 }

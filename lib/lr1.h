@@ -28,8 +28,8 @@ private:
 
 std::map<int, std::shared_ptr<Error>> ERRORS_MAP =
 {
-    { 1, std::make_shared<Error>(1, "Количество элементов массива не может быть больше 1024")},
-    { 2, std::make_shared<Error>(2, "Нижняя граница не может быть больше верхней границы")},
+    { 1, std::make_shared <Error>(1, "Количество элементов массива не может быть больше 1024")},
+    { 2, std::make_shared <Error>(2, "Нижняя граница не может быть больше верхней границы")},
 };
 
 class Result
@@ -73,7 +73,7 @@ bool PRINT_STEP(int step)
     return true;
 }
 
-std::pair<std::vector<float>, std::pair<float, float>> LoadTest(std::string name)
+std::pair<std::vector<float>, std::pair<float, float>> LoadTestAndSolve(std::string name)
 {
     double input_value;
     std::ifstream data_file(DATA_PATH + name);
