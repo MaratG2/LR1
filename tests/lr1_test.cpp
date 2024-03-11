@@ -36,10 +36,10 @@ std::vector<float> LoadExpected(std::string name)
 {
     std::ifstream data_file(DATA_PATH2+name);
     std::vector<float> expected_corrected;
-    float input_value;
+    double input_value;
     while (data_file >> input_value)
     {
-        expected_corrected.push_back(input_value);
+        expected_corrected.push_back((float)input_value);
     }
     return expected_corrected;
 }
