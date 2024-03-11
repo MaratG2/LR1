@@ -56,14 +56,15 @@ TEST_F(ProcessTest, CTest1_1)
 
     // Проверяем ожидаемые результаты
     std::pair<int, float> expected_min(-1, std::nanf(""));
-    std::vector<Error> errors_caught = {};
-    errors_caught.push_back(Error(1, "Количество элементов массива не может быть больше 1024"));
+    std::vector<Error> errors_expected = {};
+    errors_expected.push_back(Error(1, "Количество элементов массива не может быть больше 1024"));
 
     EXPECT_EQ(result.initial, got_arr_initial);
     EXPECT_EQ(result.corrected, expected_corrected);
     EXPECT_EQ(result.min.first, expected_min.first);
     EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
-    EXPECT_EQ(result.errors.size(), errors_caught.size());
-    EXPECT_EQ(result.errors[0].ToString(), errors_caught[0].ToString());
+    EXPECT_EQ(result.errors.size(), errors_expected.size());
+    if(result.errors.size() > 0 && errors_expected.size() > 0)
+        EXPECT_EQ(result.errors[0].ToString(), errors_expected[0].ToString());
 }
