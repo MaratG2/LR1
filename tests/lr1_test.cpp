@@ -64,7 +64,7 @@ TEST_F(ProcessTest, CTest1_1)
     EXPECT_EQ(result.min.first, expected_min.first);
     EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
-    EXPECT_TRUE(false) << result.corrected.size();
+    //EXPECT_TRUE(false) << result.corrected.size();
     EXPECT_EQ(result.errors.size(), errors_caught.size());
     EXPECT_EQ(result.errors[0]->ToString(), errors_caught[0]->ToString());
 }
