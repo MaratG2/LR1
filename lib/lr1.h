@@ -6,6 +6,8 @@
 #include <map>
 #include <memory>
 
+const std::string DATA_PATH = "../../LR1/tests/data/";
+
 class Error
 {
 public:
@@ -68,6 +70,62 @@ bool PRINT_STEP(int step)
 {
     //std::cout << "[TEST OUTPUT] Step: " << step << std::endl;
     return true;
+}
+
+std::pair<std::vector<float>, std::pair<float, float>> LoadTestAndSolve(std::string name)
+{
+    double input_value;
+    std::ifstream data_file(DATA_PATH + name);
+    std::vector<float> arr;
+    int len = 0;
+    bool isLastInBounds = false;
+    while (data_file >> input_value)
+    {
+        isLastInBounds = false;
+        bool isInBounds = ((static_cast<float>(input_value) >= std::numeric_limits<float>().lowest()) &&
+            static_cast<float>(input_value) <= (std::numeric_limits<float>().max()));
+        if (isInBounds)
+        {
+            arr.push_back((float)input_value);
+            isLastInBounds = true;
+        }
+        len++;
+    }
+    //std::cout << len << " | " << arr.size() << std::endl;
+    std::pair<float, float> cs(std::nanf(""), std::nanf(""));
+    if (arr.size() > 0 && arr.size() >= len - 1 && isLastInBounds)
+    {
+        cs.second = arr.back();
+        arr.pop_back();
+        if (arr.size() >= len - 1)
+        {
+            cs.first = arr.back();
+            arr.pop_back();
+        }
+    }
+    else if (arr.size() > 0 && arr.size() >= len - 1 && !isLastInBounds)
+    {
+        cs.first = arr.back();
+        arr.pop_back();
+    }
+    else if (arr.size() == 2 && len > 2)
+    {
+        cs.second = arr.back();
+        arr.pop_back();
+        cs.first = arr.back();
+        arr.pop_back();
+    }
+    else if (arr.size() == 1 && len > 1 && isLastInBounds)
+    {
+        cs.second = arr.back();
+        arr.pop_back();
+    }
+    else if (arr.size() == 1 && len > 1 && !isLastInBounds)
+    {
+        cs.first = arr.back();
+        arr.pop_back();
+    }
+    return std::pair<std::vector<float>, std::pair<float, float>>(arr, cs);
 }
 
 Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)

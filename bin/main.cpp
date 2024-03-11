@@ -5,8 +5,6 @@
 #include <filesystem>
 #include <limits>
 
-const std::string DATA_PATH = "../../LR1/tests/data/";
-
 //¬опросы:
 //1. (c1, c2) - включительно? включительно
 // если несколько минимальных, то первый возвращаем, даже если одинаковые есть
@@ -42,58 +40,9 @@ void printArray(const std::vector<float>& arr)
 int main() 
 {
     setlocale(LC_ALL, "Russian");
-
-    double input_value;
-    std::ifstream data_file(DATA_PATH + "Test2_1.txt");
-    std::vector<float> arr;
-    int len = 0;
-    bool isLastInBounds = false;
-    while (data_file >> input_value)
-    {
-        isLastInBounds = false;
-        bool isInBounds = ((static_cast<float>(input_value) >= std::numeric_limits<float>().lowest()) &&
-            static_cast<float>(input_value) <= (std::numeric_limits<float>().max()));
-        if (isInBounds)
-        {
-            arr.push_back((float)input_value);
-            isLastInBounds = true;
-        }
-        len++;
-    }
-    //std::cout << len << " | " << arr.size() << std::endl;
-    std::pair<float, float> cs(std::nanf(""), std::nanf(""));
-    if (arr.size() > 0 && arr.size() >= len - 1 && isLastInBounds)
-    {
-        cs.second = arr.back();
-        arr.pop_back();
-        if (arr.size() >= len - 1)
-        {
-            cs.first = arr.back();
-            arr.pop_back();
-        }
-    }
-    else if (arr.size() > 0 && arr.size() >= len - 1 && !isLastInBounds)
-    {
-        cs.first = arr.back();
-        arr.pop_back();
-    }
-    else if (arr.size() == 2 && len > 2)
-    {
-        cs.second = arr.back();
-        arr.pop_back();
-        cs.first = arr.back();
-        arr.pop_back();
-    }
-    else if (arr.size() == 1 && len > 1 && isLastInBounds)
-    {
-        cs.second = arr.back();
-        arr.pop_back();
-    }
-    else if (arr.size() == 1 && len > 1 && !isLastInBounds)
-    {
-        cs.first = arr.back();
-        arr.pop_back();
-    }
+    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTestAndSolve("Test1_1.txt");
+    std::vector<float> arr = data.first;
+    std::pair<float, float> cs = data.second;
     printf("From: %g | To: %g\n", cs.first, cs.second);
     Result result = process(arr, cs);
     std::cout << "First index and value: " << result.min.first << " | " << result.min.second << std::endl;

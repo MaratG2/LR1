@@ -31,40 +31,41 @@ protected:
     // Объявляем переменные, которые будут использоваться в тестах
 };
 
-// Тест 1
-TEST_F(ProcessTest, CTest1)
+std::vector<float> LoadExpected(std::string name)
 {
-    std::vector<float> expected_corrected = {};
-    std::vector<float> expected_initial = {};
-
+    std::ifstream data_file(DATA_PATH + name);
+    std::vector<float> expected_corrected;
     float input_value;
-    std::ifstream data_file(DATA_PATH + "test1.txt");
-    std::vector<float> arr;
     while (data_file >> input_value)
-        arr.push_back(input_value);
-    std::pair<float, float> cs;
-    cs.second = arr.back();
-    arr.pop_back();
-    cs.first = arr.back();
-    arr.pop_back();
+    {
+        expected_corrected.push_back(input_value);
+    }
+    return expected_corrected;
+}
 
-    expected_initial = arr;
-    expected_corrected = expected_initial;
+// Тест 1-1
+TEST_F(ProcessTest, CTest1_1)
+{
+    std::vector<float> expected_corrected = LoadExpected("Test1_1_expected");
+    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTestAndSolve("Test1_1.txt");
+    std::vector<float> got_arr_initial = data.first;
+    std::pair<float, float> got_cs = data.second;
 
     // Вызываем функцию process с тестовыми данными
-    Result result = process(arr, cs);
+    Result result = process(got_arr_initial, got_cs);
 
     // Проверяем ожидаемые результаты
     std::pair<int, float> expected_min(-1, std::nanf(""));
     std::vector<std::shared_ptr<Error>> errors_caught = {};
     errors_caught.push_back(ERRORS_MAP[1]);
 
-    EXPECT_EQ(result.initial, expected_initial);
+    EXPECT_EQ(result.initial, got_arr_initial);
     EXPECT_EQ(result.corrected, expected_corrected);
     EXPECT_EQ(result.min.first, expected_min.first);
-    EXPECT_FALSE(result.min.second == result.min.second);
-    EXPECT_FALSE(expected_min.second == expected_min.second);
+    EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
+    EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_EQ(result.errors.size(), errors_caught.size());
+    EXPECT_EQ(result.errors[0]->ToString(), errors_caught[0]->ToString());
 }
 
 // Тест 2
