@@ -52,7 +52,7 @@ int main()
     printArray(result.corrected);
     std::cout << "\nArray of errors:";
     for (int i = 0; i < result.errors.size(); i++)
-        std::cout << std::endl << result.errors[i]->ToString();
+        std::cout << std::endl << result.errors[i].ToString();
 
     return 0;
 }
