@@ -5,7 +5,7 @@
 #include <vector>
 #include <utility>
 
-const std::string DATA_PATH2 = "home/runner/work/LR1/LR1/build/tests/data/";
+const std::string DATA_PATH2 = "../../tests/data/";
 
 
 // Подробнее https://google.github.io/googletest/reference/testing.html
@@ -61,7 +61,7 @@ std::vector<float> LoadExpected(std::string name)
 // Тест 1-1
 TEST_F(ProcessTest, CTest1_1)
 {
-    std::vector<float> expected_corrected = LoadExpected("Test1_1_expected");
+    std::vector<float> expected_corrected = LoadExpected("Test1_1_expected.txt");
     std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test1_1.txt");
     std::vector<float> got_arr_initial = data.first;
     std::pair<float, float> got_cs = data.second;
