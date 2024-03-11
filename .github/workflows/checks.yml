@@ -5,17 +5,22 @@ on:
     branches: [ main, lr ]
   pull_request:
     branches: [ main, lr ]
+  
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
     steps:
-    - name: Install gtest manually
-      run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp lib/*.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
-    - uses: actions/checkout@v1
-    - name: configure
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Configure
       run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" ..
-    - name: make
+    - name: Build & Make
       run: cd build && make
-    - name: Run Test
-      run: /home/runner/work/LR1/LR1/./test/LR1.test
+    - name: Run C/C++test
+      uses: parasoft/run-cpptest-action@2.0.1
