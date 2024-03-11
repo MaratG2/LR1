@@ -67,10 +67,15 @@ bool PRINT_STEP(int step)
     return true;
 }
 
-std::pair<std::vector<float>, std::pair<float, float>> LoadTest(std::string name)
+std::pair<std::vector<float>, std::pair<float, float>> LoadTest(std::string name, bool isGoogle = false)
 {
     double input_value;
-    std::ifstream data_file(DATA_PATH + name);
+    std::string path;
+    if (isGoogle)
+        path = name;
+    else
+        path = DATA_PATH + name;
+    std::ifstream data_file(path);
     std::vector<float> arr;
     int len = 0;
     bool isLastInBounds = false;

@@ -33,7 +33,7 @@ protected:
 
 std::vector<float> LoadExpected(std::string name)
 {
-    std::ifstream data_file(DATA_PATH2 + name);
+    std::ifstream data_file(name);
     std::vector<float> expected_corrected;
     float input_value;
     while (data_file >> input_value)
@@ -47,7 +47,7 @@ std::vector<float> LoadExpected(std::string name)
 TEST_F(ProcessTest, CTest1_1)
 {
     std::vector<float> expected_corrected = LoadExpected("Test1_1_expected.txt");
-    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test1_1.txt");
+    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test1_1.txt", true);
     std::vector<float> got_arr_initial = data.first;
     std::pair<float, float> got_cs = data.second;
 
@@ -68,5 +68,5 @@ TEST_F(ProcessTest, CTest1_1)
     if(result.errors.size() > 0 && errors_expected.size() > 0)
         EXPECT_EQ(result.errors[0].ToString(), errors_expected[0].ToString());
     EXPECT_FALSE(true) << got_arr_initial.size();
-    EXPECT_FALSE(true) << result.corrected.size()
+    EXPECT_FALSE(true) << result.corrected.size();
 }
