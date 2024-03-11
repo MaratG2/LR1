@@ -79,7 +79,7 @@ void GenerateExpected(FileInfo test)
     {
         foreach (var r in res)
         {
-            w.WriteLine(String.Format("{0:F20}", r));
+            w.WriteLine(r.ToString());
         }
     }
 }
