@@ -138,7 +138,7 @@ Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
     if (PRINT_STEP(2) && arr.size() > 1024) //2
     {
         PRINT_STEP(3); //3
-        errors_caught.push_back(Error(1, "Количество элементов массива не может быть больше 1024")); //3
+        errors_caught.push_back(Error(1, "Number of elements should not be more than 1024")); //3
         Result results(min, arr, res, errors_caught); //3
         PRINT_STEP(27); //27
         return results; //27
@@ -147,7 +147,7 @@ Result process(const std::vector<float>& arr, const std::pair<float, float>& cs)
     if (PRINT_STEP(4) && floatMore(cs.first, cs.second)) //4
     {
         PRINT_STEP(5); //5
-        errors_caught.push_back(Error(2, "Нижняя граница не может быть больше верхней границы")); //5
+        errors_caught.push_back(Error(2, "Lower bound should not be more than higher bound")); //5
         Result results(min, arr, res, errors_caught); //5
         PRINT_STEP(27); //27
         return results; //27
