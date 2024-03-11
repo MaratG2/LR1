@@ -72,7 +72,7 @@ TEST_F(ProcessTest, CTest1_1)
     EXPECT_FALSE(true) << result.corrected.size();
 
     std::string path = "";
-    for (const auto& entry : fs::directory_iterator("./"))
+    for (const auto& entry : fs::directory_iterator("lr1_tests/"))
     {
         path += entry.path().filename().string();
         path += " | ";
