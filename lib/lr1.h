@@ -7,7 +7,7 @@
 #include <map>
 #include <memory>
 
-const std::string DATA_PATH = "../../LR1/tests/";
+const std::string DATA_PATH = "../../LR1/tests/data/";
 
 class Error
 {
