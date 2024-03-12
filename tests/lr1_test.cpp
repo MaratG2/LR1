@@ -38,7 +38,7 @@ std::vector<float> LoadExpected(std::string name)
     std::vector<float> expected_corrected;
     double input_value;
     std::string input;
-    while (data_file2 >> input)
+    while (std::getline(data_file2, input))
     {
         input_value = atof(input.c_str());
         expected_corrected.push_back((float)input_value);
