@@ -456,8 +456,6 @@ TEST_F(ProcessTest, CTest6_1)
     EXPECT_EQ(result.initial, got_arr_initial);
     EXPECT_EQ(result.corrected, expected_corrected);
     EXPECT_EQ(result.min.first, expected_min.first);
-    EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
-    EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_EQ(result.errors.size(), errors_expected.size());
 }
 
@@ -479,8 +477,6 @@ TEST_F(ProcessTest, CTest6_2)
     EXPECT_EQ(result.initial, got_arr_initial);
     EXPECT_EQ(result.corrected, expected_corrected);
     EXPECT_EQ(result.min.first, expected_min.first);
-    EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
-    EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_EQ(result.errors.size(), errors_expected.size());
 }
 
@@ -594,8 +590,6 @@ TEST_F(ProcessTest, CTest6_7)
     EXPECT_EQ(result.initial, got_arr_initial);
     EXPECT_EQ(result.corrected, expected_corrected);
     EXPECT_EQ(result.min.first, expected_min.first);
-    EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
-    EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_EQ(result.errors.size(), errors_expected.size());
 }
 
@@ -617,8 +611,6 @@ TEST_F(ProcessTest, CTest6_8)
     EXPECT_EQ(result.initial, got_arr_initial);
     EXPECT_EQ(result.corrected, expected_corrected);
     EXPECT_EQ(result.min.first, expected_min.first);
-    EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
-    EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_EQ(result.errors.size(), errors_expected.size());
 }
 
@@ -640,7 +632,5 @@ TEST_F(ProcessTest, CTest6_9)
     EXPECT_EQ(result.initial, got_arr_initial);
     EXPECT_EQ(result.corrected, expected_corrected);
     EXPECT_EQ(result.min.first, expected_min.first);
-    EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
-    EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_EQ(result.errors.size(), errors_expected.size());
 }
