@@ -40,7 +40,7 @@ void printArray(const std::vector<float>& arr)
 int main() 
 {
     setlocale(LC_ALL, "Russian");
-    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test1_1.txt");
+    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest("Test2_1.txt");
     std::vector<float> arr = data.first;
     std::pair<float, float> cs = data.second;
     printf("From: %g | To: %g\n", cs.first, cs.second);

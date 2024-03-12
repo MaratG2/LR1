@@ -67,3 +67,26 @@ TEST_F(ProcessTest, CTest1_1)
     EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
     EXPECT_EQ(result.errors.size(), errors_expected.size());
 }
+
+// Тест 2-1
+TEST_F(ProcessTest, CTest2_1)
+{
+    std::vector<float> expected_corrected = LoadExpected("Test2_1_expected.txt");
+    std::pair<std::vector<float>, std::pair<float, float>> data = LoadTest(DATA_PATH2 + "Test2_1.txt", true);
+    std::vector<float> got_arr_initial = data.first;
+    std::pair<float, float> got_cs = data.second;
+
+    // Вызываем функцию process с тестовыми данными
+    Result result = process(got_arr_initial, got_cs);
+
+    // Проверяем ожидаемые результаты
+    std::pair<int, float> expected_min(-1, std::nanf(""));
+    std::vector<Error> errors_expected = {};
+
+    EXPECT_EQ(result.initial, got_arr_initial);
+    EXPECT_EQ(result.corrected, expected_corrected);
+    EXPECT_EQ(result.min.first, expected_min.first);
+    EXPECT_FALSE(result.min.second == result.min.second); //Убеждаемся, что минимума нет - он NaN
+    EXPECT_FALSE(expected_min.second == expected_min.second); //Убеждаемся, что минимума нет - он NaN
+    EXPECT_EQ(result.errors.size(), errors_expected.size());
+}
