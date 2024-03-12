@@ -79,7 +79,7 @@ void GenerateExpected(FileInfo test)
     {
         foreach (var r in res)
         {
-            w.WriteLine(r.ToString());
+            w.WriteLine(r.ToString(CultureInfo.InvariantCulture));
         }
     }
 }
